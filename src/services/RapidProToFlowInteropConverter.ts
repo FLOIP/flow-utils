@@ -107,13 +107,29 @@ export class RapidProToFlowInteropConverter {
     for(let i=0; i<this.rpFlow.nodes.length; i++) {
       const rpNode = this.rpFlow.nodes[i]
       const singleDestinationUuid = this.rpNodeSingleDestination(rpNode)
-      if(singleDestinationUuid) {
+      
+      // We also need to check that the destination only has a single input from this block! If there are other blocks that have the destination as their destination, we cannot do this collapse
+      if(singleDestinationUuid && this.countRPExitsHavingDestination(singleDestinationUuid) == 1) {
         // console.log("Node " + rpNode.uuid + " has single destination: " + singleDestinationUuid)
         this.rpMoveActionsAndRemoveNode(this.rpFindNodeIndex(rpNode.uuid)!, this.rpFindNodeIndex(singleDestinationUuid)!)
         // We've made one merge. Now start over and try again, until there are no more changes to make
         return this.prepareRPFlow_mergeDirectLinksIntoActions()
       }
     }
+  }
+
+  /// Count the number of RapidPro exits that have destinationNodeUuid as their destination
+  protected countRPExitsHavingDestination(destinationNodeUuid: string) {
+    let count = 0
+    for(let i=0; i<this.rpFlow.nodes.length; i++) {
+      const rpNode = this.rpFlow.nodes[i]
+      for(let j=0; j<rpNode.exits.length; j++) {
+        if(rpNode.exits[j].destination_uuid == destinationNodeUuid) {
+          count++
+        }
+      }
+    }
+    return count
   }
 
   /// Move the actions from sourceNode to destinationNode, and remove sourceNode from the flow. We use this to remove redundant nodes that could be actions within a single node.

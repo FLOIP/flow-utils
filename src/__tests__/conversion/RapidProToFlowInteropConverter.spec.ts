@@ -328,6 +328,24 @@ describe('Conversion Usage Tests', () => {
           ]
         },
         {
+          "uuid": "aca93eae-08c0-43c7-a2c9-bdcaa4671d5b",
+          "actions": [
+            {
+              "attachments": [],
+              "text": "Sorry, we didn't understand that message!",
+              "type": "send_msg",
+              "quick_replies": [],
+              "uuid": "78f8b5ef-7f4f-42c2-8f3a-bb2c85649609"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "be59a73d-5507-4a15-9d29-501d17c0f741",
+              "destination_uuid": "be8e320a-739c-4c60-8046-312e3981521c"
+            }
+          ]
+        },
+        {
           "uuid": "2e7b76ad-eb0f-48af-b1cd-5c02b489dc32",
           "actions": [],
           "router": {
@@ -427,24 +445,6 @@ describe('Conversion Usage Tests', () => {
             {
               "uuid": "2a6b4f8a-5cc4-4030-9d7f-8aece583e05a",
               "destination_uuid": "aca93eae-08c0-43c7-a2c9-bdcaa4671d5b"
-            }
-          ]
-        },
-        {
-          "uuid": "aca93eae-08c0-43c7-a2c9-bdcaa4671d5b",
-          "actions": [
-            {
-              "attachments": [],
-              "text": "Sorry, we didn't understand that message!",
-              "type": "send_msg",
-              "quick_replies": [],
-              "uuid": "78f8b5ef-7f4f-42c2-8f3a-bb2c85649609"
-            }
-          ],
-          "exits": [
-            {
-              "uuid": "be59a73d-5507-4a15-9d29-501d17c0f741",
-              "destination_uuid": "be8e320a-739c-4c60-8046-312e3981521c"
             }
           ]
         },
@@ -594,62 +594,62 @@ describe('Conversion Usage Tests', () => {
           },
           "be8e320a-739c-4c60-8046-312e3981521c": {
             "position": {
-              "left": 40,
-              "top": 200
+              "left": 220,
+              "top": 0
             },
             "type": "execute_actions"
           },
           "2e7b76ad-eb0f-48af-b1cd-5c02b489dc32": {
             "type": "wait_for_response",
             "position": {
-              "left": 80,
-              "top": 380
+              "left": 540,
+              "top": 20
             },
             "config": {
               "cases": {}
             }
           },
-          "bb06ca34-faf7-481b-9945-9e5092fab0bb": {
-            "position": {
-              "left": 20,
-              "top": 559
-            },
-            "type": "execute_actions"
-          },
           "aca93eae-08c0-43c7-a2c9-bdcaa4671d5b": {
             "position": {
-              "left": 360,
-              "top": 540
+              "left": 880,
+              "top": 0
             },
             "type": "execute_actions"
           },
-          "f7b9b853-0113-494b-aaf7-160a07a221de": {
+          "bb06ca34-faf7-481b-9945-9e5092fab0bb": {
             "position": {
-              "left": 40,
-              "top": 820
-            },
-            "type": "execute_actions"
-          },
-          "169c0267-a83f-457e-9f32-5cac8efdf850": {
-            "position": {
-              "left": 180,
-              "top": 940
+              "left": 580,
+              "top": 180
             },
             "type": "execute_actions"
           },
           "962a88b6-5bcb-4eae-857e-3aa3e6535ddf": {
             "type": "wait_for_response",
             "position": {
-              "left": 20,
-              "top": 680
+              "left": 580,
+              "top": 340
             },
             "config": {
               "cases": {}
             }
+          },
+          "f7b9b853-0113-494b-aaf7-160a07a221de": {
+            "position": {
+              "left": 340,
+              "top": 380
+            },
+            "type": "execute_actions"
+          },
+          "169c0267-a83f-457e-9f32-5cac8efdf850": {
+            "position": {
+              "left": 540,
+              "top": 500
+            },
+            "type": "execute_actions"
           }
         }
       },
-      "revision": 65,
+      "revision": 78,
       "expire_after_minutes": 10080,
       "metadata": {
         "expires": 10080
