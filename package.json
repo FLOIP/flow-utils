@@ -1,0 +1,49 @@
+{
+  "name": "@floip/flow-utils",
+  "version": "1.0.0",
+  "description": "Typescript utilities for working with Flow Spec packages, from the Flow Interoperability Project.",
+  "engines": {
+    "node": ">= 12.13 <16"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^26.0.21",
+    "@types/lodash": "^4.14.168",
+    "@types/node": "^14.14.35",
+    "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "~4.18.0",
+    "@typescript-eslint/parser": "~4.18.0",
+    "eslint": "~7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-jest": "~24.3.2",
+    "jest": "~26.6.3",
+    "prettier": "~2.2.1",
+    "rimraf": "~3.0.2",
+    "ts-jest": "^26.5.4",
+    "ts-json-schema-generator": "^0.89.0",
+    "tsutils": "~3.21.0",
+    "typescript": "^4.2.3"
+  },
+  "scripts": {
+    "clean": "rimraf coverage dist tmp; mkdir dist; mkdir dist/resources",
+    "build": "tsc -p tsconfig.json; ./node_modules/.bin/ts-json-schema-generator --type RPFlow --additional-properties true --tsconfig 'tsconfig.json' --out 'dist/resources/rapidProJsonSchema.json'",
+    "build:watch": "tsc -w -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "author": "Mark Boots <mark.boots@viamo.io>",
+  "license": "MIT",
+  "dependencies": {
+    "@floip/flow-runner": "^1.0.0-rc2",
+    "ajv": "^7.2.3",
+    "ajv-formats": "^1.5.1",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "neverthrow": "^4.2.0",
+    "slugify": "^1.5.0",
+    "tslib": "~2.1.0",
+    "uuid": "^8.3.2"
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "specification_version": "1.0.0-rc1",
+  "uuid": "630aed00-f07a-4506-9196-8c77d892cfc9",
+  "name": "Summary Case Report Test",
+  "flows": [
+    {
+      "uuid": "630aed00-f07a-4506-9196-8c77d892cfc9",
+      "name": "Summary Case Report Test",
+      "interaction_timeout": 604800,
+      "supported_modes": [
+        "RICH_MESSAGING",
+        "TEXT"
+      ],
+      "languages": [
+        {
+          "id": "eng",
+          "iso_639_3": "eng"
+        }
+      ],
+      "last_modified": "2021-05-30T20:44:44.777Z",
+      "first_block_id": "2a901d3a-0ff0-40d8-b1b8-866e2dc49790",
+      "blocks": [
+        {
+          "uuid": "2a901d3a-0ff0-40d8-b1b8-866e2dc49790",
+          "name": "This_is_the_Summary_Case_Report_Form",
+          "label": "This is the Summary Case Report Form. Please provide the patient's Unique Identifier.",
+          "type": "MobilePrimitives.Message",
+          "exits": [
+            {
+              "uuid": "54782fff-6350-4c1a-b823-5aaf72eed032",
+              "destination_block": "bc7d3db9-e1f4-4b35-97e9-e7417c0f2723",
+              "tag": "default",
+              "default": true
+            }
+          ],
+          "config": {
+            "message": "2a901d3a-0ff0-40d8-b1b8-866e2dc49790"
+          }
+        },
+        {
+          "uuid": "bc7d3db9-e1f4-4b35-97e9-e7417c0f2723",
+          "name": "patient_id",
+          "type": "MobilePrimitives.OpenResponse",
+          "exits": [
+            {
+              "uuid": "0d3337d6-b4f7-4c8a-a4ac-f6552e2bd070",
+              "destination_block": "a19a1201-e1cc-4f52-a293-066d339b5f15",
+              "label": "bed084fc-137a-4025-b8e3-9fe7891df36d",
+              "tag": "All_Responses",
+              "default": true,
+              "test": "@true"
+            }
+          ],
+          "config": {
+            "prompt": "bc7d3db9-e1f4-4b35-97e9-e7417c0f2723"
+          }
+        },
+        {
+          "uuid": "a19a1201-e1cc-4f52-a293-066d339b5f15",
+          "name": "Please_provide_the_age_of_the_patien",
+          "label": "Please provide the age of the patient in YEARS. If under age one, put 0.",
+          "type": "MobilePrimitives.Message",
+          "exits": [
+            {
+              "uuid": "db08bc07-2fc4-48b7-9ba8-0233e3bddc78",
+              "destination_block": "acf0d621-658e-42e1-93b7-592147453a39",
+              "tag": "default",
+              "default": true
+            }
+          ],
+          "config": {
+            "message": "a19a1201-e1cc-4f52-a293-066d339b5f15"
+          }
+        },
+        {
+          "uuid": "acf0d621-658e-42e1-93b7-592147453a39",
+          "name": "patient_age",
+          "type": "MobilePrimitives.OpenResponse",
+          "exits": [
+            {
+              "uuid": "430618c8-9bd4-41cd-bb3d-c9543b2ceb90",
+              "destination_block": "4acdb4f3-2a96-428d-ad0d-87dd1d04f1a2",
+              "label": "553d3ea7-ab9b-45e8-89fc-963d4edaa114",
+              "tag": "Has_Number",
+              "test": "@has_number_between(input.text, 0, 110)"
+            },
+            {
+              "uuid": "bc4944ab-8ae0-495b-b542-6ed824539d06",
+              "destination_block": "a19a1201-e1cc-4f52-a293-066d339b5f15",
+              "label": "d0ada553-7e01-4057-b7e6-dbe28292c38b",
+              "tag": "Other",
+              "default": true,
+              "test": "@true"
+            }
+          ],
+          "config": {
+            "prompt": "acf0d621-658e-42e1-93b7-592147453a39"
+          }
+        },
+        {
+          "uuid": "4acdb4f3-2a96-428d-ad0d-87dd1d04f1a2",
+          "name": "What_is_the_date_of_first_laboratory",
+          "label": "What is the date of first laboratory confirmation test? Please specify as DD/MM/YEAR,  e.g. 01052021.",
+          "type": "MobilePrimitives.Message",
+          "exits": [
+            {
+              "uuid": "dd359e95-a26f-4505-862f-95d7c836a949",
+              "destination_block": "6399d220-a4f8-4274-8224-a8a31aa3c36d",
+              "tag": "default",
+              "default": true
+            }
+          ],
+          "config": {
+            "message": "4acdb4f3-2a96-428d-ad0d-87dd1d04f1a2"
+          }
+        },
+        {
+          "uuid": "161642bb-4073-442f-8470-5b4b9922bc49",
+          "name": "Thank_you_You_provided_Identifier_re",
+          "label": "Thank you. You provided Identifier (@results.patient_id), Age (@results.patient_age), and Test Date (@results.patient_test_date)",
+          "type": "MobilePrimitives.Message",
+          "exits": [
+            {
+              "uuid": "06d11255-3706-4845-89ed-b7399b6b0648",
+              "tag": "default",
+              "default": true
+            }
+          ],
+          "config": {
+            "message": "161642bb-4073-442f-8470-5b4b9922bc49"
+          }
+        },
+        {
+          "uuid": "6399d220-a4f8-4274-8224-a8a31aa3c36d",
+          "name": "patient_test_date",
+          "type": "MobilePrimitives.OpenResponse",
+          "exits": [
+            {
+              "uuid": "cf7bd0b9-4190-4f74-819a-475212d32a5f",
+              "destination_block": "161642bb-4073-442f-8470-5b4b9922bc49",
+              "label": "429674cb-31e3-486a-98d9-4d14c10d35c5",
+              "tag": "Has_Number",
+              "test": "@has_date(input.text)"
+            },
+            {
+              "uuid": "e3c8874c-df2b-4ef0-9236-d03004b5b1d5",
+              "destination_block": "4acdb4f3-2a96-428d-ad0d-87dd1d04f1a2",
+              "label": "85aaa8da-e8e3-4aba-9d68-fcbfb4041d38",
+              "tag": "Other",
+              "default": true,
+              "test": "@true"
+            }
+          ],
+          "config": {
+            "prompt": "6399d220-a4f8-4274-8224-a8a31aa3c36d"
+          }
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "uuid": "2a901d3a-0ff0-40d8-b1b8-866e2dc49790",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "This is the Summary Case Report Form. Please provide the patient's Unique Identifier."
+        }
+      ]
+    },
+    {
+      "uuid": "bed084fc-137a-4025-b8e3-9fe7891df36d",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "All Responses"
+        }
+      ]
+    },
+    {
+      "uuid": "bc7d3db9-e1f4-4b35-97e9-e7417c0f2723",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "[empty-fix-me]"
+        }
+      ]
+    },
+    {
+      "uuid": "a19a1201-e1cc-4f52-a293-066d339b5f15",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "Please provide the age of the patient in YEARS. If under age one, put 0."
+        }
+      ]
+    },
+    {
+      "uuid": "553d3ea7-ab9b-45e8-89fc-963d4edaa114",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "Has Number"
+        }
+      ]
+    },
+    {
+      "uuid": "d0ada553-7e01-4057-b7e6-dbe28292c38b",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "Other"
+        }
+      ]
+    },
+    {
+      "uuid": "acf0d621-658e-42e1-93b7-592147453a39",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "[empty-fix-me]"
+        }
+      ]
+    },
+    {
+      "uuid": "4acdb4f3-2a96-428d-ad0d-87dd1d04f1a2",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "What is the date of first laboratory confirmation test? Please specify as DD/MM/YEAR,  e.g. 01052021."
+        }
+      ]
+    },
+    {
+      "uuid": "161642bb-4073-442f-8470-5b4b9922bc49",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "Thank you. You provided Identifier (@results.patient_id), Age (@results.patient_age), and Test Date (@results.patient_test_date)"
+        }
+      ]
+    },
+    {
+      "uuid": "429674cb-31e3-486a-98d9-4d14c10d35c5",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "Has Number"
+        }
+      ]
+    },
+    {
+      "uuid": "85aaa8da-e8e3-4aba-9d68-fcbfb4041d38",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "Other"
+        }
+      ]
+    },
+    {
+      "uuid": "6399d220-a4f8-4274-8224-a8a31aa3c36d",
+      "values": [
+        {
+          "language_id": "eng",
+          "content_type": "TEXT",
+          "mime_type": "text/plain",
+          "modes": [
+            "TEXT",
+            "RICH_MESSAGING"
+          ],
+          "value": "[empty-fix-me]"
+        }
+      ]
+    }
+  ]
+}
