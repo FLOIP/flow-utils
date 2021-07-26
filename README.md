@@ -35,7 +35,7 @@ const rapidProJson = `{
         ]
       }`
 
-const converter = new RapidProToFlowInteropConverter(flowJson)
+const converter = new RapidProToFlowInteropConverter(rapidProJson)
 const result = converter.convert()
 
 if(result.isOk()) {
