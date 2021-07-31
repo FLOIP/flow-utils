@@ -431,7 +431,7 @@ export class RapidProToFlowInteropConverter {
 
     else if(type === "Core.SetContactProperty") {
       // RP: field.key, field.value
-      // FI: property_key, property_value
+      // FI: set_contact_property.{property_key, property_value}
 
       blocks.push({
           uuid: uuidv4(), // TODO: Deterministically Repeatable solution?
@@ -439,8 +439,10 @@ export class RapidProToFlowInteropConverter {
           type: type,
           exits: [],
           config: {
-            property_key: action.field.key,
-            property_value: action.value,
+            set_contact_property: {
+              property_key: action.field.key,
+              property_value: action.value,
+            }
           },
           ui_metadata: ui_metadata
         } as IBlock)
@@ -656,12 +658,12 @@ export class RapidProToFlowInteropConverter {
     // Option 2: Find the last action that has a "text" property and slugify that
     for(let i=rpNode.actions.length-1; i>=0; i--) {
       if(rpNode.actions[i].text) {
-        return this.slugified(rpNode.actions[i].text).substr(0, 36)
+        return this.slugified(rpNode.actions[i].text).substr(0, 48)
       }
     }
 
     // Option 3: Fallback to something from the uuid
-    return "block_" + rpNode.uuid
+    return "block_" + this.slugified(rpNode.uuid)
   }
 
   protected blockTypeFromRPActionType(actionType: string): string {
